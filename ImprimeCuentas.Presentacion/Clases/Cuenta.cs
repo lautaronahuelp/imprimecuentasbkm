@@ -2,23 +2,26 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CredentialManagement;
 using MySql.Data.MySqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace ImprimeCuentas.Presentacion.Clases
 {
     class CuentaMySQL
     {
         protected DataTable cuentasObtenidas;
-        protected string connectionString
-        {
+        protected string connectionString;
+        /*{
             get
             {
-                return "Server=127.0.0.1;Port=3306;Database=bykom;Uid=bkm_lp;";
+                return "";
             }
-        }
+        }*/
         
         public DataTable CuentasObtenidas
         {
@@ -29,7 +32,13 @@ namespace ImprimeCuentas.Presentacion.Clases
         }
         public CuentaMySQL(string nro_cuenta, int part_cuenta, string agrup_cuenta, string rep_cuenta)
         {
-           this.cuentasObtenidas = this.getTabla(nro_cuenta, part_cuenta, agrup_cuenta, rep_cuenta);
+            
+            var cm = new Credential { Target = "imprimecuentas" };
+            cm.Load();
+            connectionString = $"Server=127.0.0.1;Port=3306;Database=bykom;Uid={cm.Username};Pwd={cm.Password}";
+
+
+            this.cuentasObtenidas = this.getTabla(nro_cuenta, part_cuenta, agrup_cuenta, rep_cuenta);
         }
 
         protected DataTable getTabla(string n_cuenta = null, int p_cuenta = -1, string a_cuenta = null, string r_cuenta = null)

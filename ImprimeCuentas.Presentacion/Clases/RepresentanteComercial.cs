@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CredentialManagement;
 using MySql.Data.MySqlClient;
 
 namespace ImprimeCuentas.Presentacion.Clases
@@ -12,13 +13,13 @@ namespace ImprimeCuentas.Presentacion.Clases
     class RepresentantesComercialesMySQL
     {
         protected DataTable representantesObtenidos;
-        protected string connectionString
-        {
+        protected string connectionString;
+        /*{
             get
             {
-                return "Server=127.0.0.1;Port=3306;Database=bykom;Uid=bkm_lp;";
+                return "";
             }
-        }
+        }*/
         
         public DataTable RepresentantesObtenidos
         {
@@ -29,7 +30,10 @@ namespace ImprimeCuentas.Presentacion.Clases
         }
         public RepresentantesComercialesMySQL()
         {
-           this.representantesObtenidos = this.getTabla();
+            var cm = new Credential { Target = "imprimecuentas" };
+            cm.Load();
+            connectionString = $"Server=127.0.0.1;Port=3306;Database=bykom;Uid={cm.Username};Pwd={cm.Password}";
+            this.representantesObtenidos = this.getTabla();
         }
 
         protected DataTable getTabla()
