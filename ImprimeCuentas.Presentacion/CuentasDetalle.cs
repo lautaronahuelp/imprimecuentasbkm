@@ -1,9 +1,9 @@
 using ImprimeCuentas.Presentacion.Clases;
 namespace ImprimeCuentas.Presentacion
 {
-    public partial class CuentasDetalle : Form
+    public partial class CuentaDetalle : Form
     {
-        public CuentasDetalle()
+        public CuentaDetalle()
         {
             InitializeComponent();
         }

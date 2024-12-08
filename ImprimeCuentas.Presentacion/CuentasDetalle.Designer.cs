@@ -1,6 +1,6 @@
 ﻿namespace ImprimeCuentas.Presentacion
 {
-    partial class CuentasDetalle
+    partial class CuentaDetalle
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,35 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            cuentasDataGridView = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)cuentasDataGridView).BeginInit();
             SuspendLayout();
             // 
-            // cuentasDataGridView
-            // 
-            cuentasDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            cuentasDataGridView.Location = new Point(12, 91);
-            cuentasDataGridView.Name = "cuentasDataGridView";
-            cuentasDataGridView.ReadOnly = true;
-            cuentasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            cuentasDataGridView.Size = new Size(776, 394);
-            cuentasDataGridView.TabIndex = 0;
-            // 
-            // CuentasLista
+            // CuentaDetalle
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 514);
-            Controls.Add(cuentasDataGridView);
-            Name = "CuentasLista";
-            Text = "Cuenta";
+            Name = "CuentaDetalle";
+            Text = "Detalle de cuenta.";
             Load += CuentasLista_Load;
-            ((System.ComponentModel.ISupportInitialize)cuentasDataGridView).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private DataGridView cuentasDataGridView;
     }
 }
