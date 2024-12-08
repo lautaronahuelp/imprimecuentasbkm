@@ -74,9 +74,12 @@ namespace ImprimeCuentas.Presentacion.Clases
                 if (a_cuenta != null) query += " AND cue.CENTRALMON = @agrup_cuenta";
                 else query += " AND TRUE";
 
-                if (r_cuenta != null) query += " AND rco.CODIGOALFA = @rep_cuenta;";
-                else query += " AND TRUE;";
+                if (r_cuenta != null) query += " AND rco.CODIGOALFA = @rep_cuenta";
+                else query += " AND TRUE";
             }
+
+            query += " ORDER BY RIGHT(CONCAT(\"000000\", TRIM(nro_cuenta)),6);";
+
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 MySqlCommand cmdSelect = new MySqlCommand(query, conn);

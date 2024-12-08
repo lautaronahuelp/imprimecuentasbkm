@@ -38,14 +38,22 @@
             particionCheckBox = new CheckBox();
             representanteComercialComboBox = new ComboBox();
             representanteComercialLabel = new Label();
+            agrupacionLabel = new Label();
+            agrupacionComboBox = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)cuentasDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)particionNumericUpDown).BeginInit();
             SuspendLayout();
             // 
             // cuentasDataGridView
             // 
+            cuentasDataGridView.AllowUserToAddRows = false;
+            cuentasDataGridView.AllowUserToDeleteRows = false;
+            cuentasDataGridView.AllowUserToResizeRows = false;
+            cuentasDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            cuentasDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             cuentasDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             cuentasDataGridView.Location = new Point(12, 91);
+            cuentasDataGridView.MultiSelect = false;
             cuentasDataGridView.Name = "cuentasDataGridView";
             cuentasDataGridView.ReadOnly = true;
             cuentasDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -130,11 +138,30 @@
             representanteComercialLabel.TabIndex = 14;
             representanteComercialLabel.Text = "Rep. Comercial:";
             // 
+            // agrupacionLabel
+            // 
+            agrupacionLabel.AutoSize = true;
+            agrupacionLabel.Location = new Point(381, 69);
+            agrupacionLabel.Name = "agrupacionLabel";
+            agrupacionLabel.Size = new Size(72, 15);
+            agrupacionLabel.TabIndex = 16;
+            agrupacionLabel.Text = "Agrupacion:";
+            // 
+            // agrupacionComboBox
+            // 
+            agrupacionComboBox.FormattingEnabled = true;
+            agrupacionComboBox.Location = new Point(459, 65);
+            agrupacionComboBox.Name = "agrupacionComboBox";
+            agrupacionComboBox.Size = new Size(156, 23);
+            agrupacionComboBox.TabIndex = 15;
+            // 
             // CuentasLista
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 514);
+            Controls.Add(agrupacionLabel);
+            Controls.Add(agrupacionComboBox);
             Controls.Add(representanteComercialLabel);
             Controls.Add(representanteComercialComboBox);
             Controls.Add(particionCheckBox);
@@ -166,5 +193,7 @@
         private CheckBox particionCheckBox;
         private ComboBox representanteComercialComboBox;
         private Label representanteComercialLabel;
+        private Label agrupacionLabel;
+        private ComboBox agrupacionComboBox;
     }
 }

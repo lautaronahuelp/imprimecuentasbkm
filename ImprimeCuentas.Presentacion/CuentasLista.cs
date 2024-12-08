@@ -19,6 +19,11 @@ namespace ImprimeCuentas.Presentacion
             this.representanteComercialComboBox.DisplayMember = "nombre_mix";
             this.representanteComercialComboBox.ValueMember = "codigo";
 
+            AgrupacionesReceptorasMySQL agrupaciones = new AgrupacionesReceptorasMySQL();
+            this.agrupacionComboBox.DataSource = agrupaciones.AgrupacionesObtenidas;
+            this.agrupacionComboBox.DisplayMember = "nombre";
+            this.agrupacionComboBox.ValueMember = "id";
+
         }
 
         private void CuentasLista_Load(object sender, EventArgs e)
@@ -31,20 +36,27 @@ namespace ImprimeCuentas.Presentacion
             this.cuentaTextBox.Text = string.Empty;
             this.particionNumericUpDown.Value = 0;
             this.particionCheckBox.Checked = false;
+            this.representanteComercialComboBox.SelectedValue = " ";
+            this.agrupacionComboBox.SelectedValue = -1;
         }
 
         private void buscarButton_Click(object sender, EventArgs e)
         {
             string cuenta = null;
             int particion = -1;
+            string representante = null;
+            string agrupacion = null;
 
-            if(this.cuentaTextBox.Text != string.Empty) cuenta = this.cuentaTextBox.Text;
-            if (this.particionCheckBox.Checked) particion = (int) this.particionNumericUpDown.Value;
-            
+            if (this.cuentaTextBox.Text != string.Empty) cuenta = this.cuentaTextBox.Text;
+            if (this.particionCheckBox.Checked) particion = (int)this.particionNumericUpDown.Value;
+            if (this.representanteComercialComboBox.SelectedValue != null) representante = (string)this.representanteComercialComboBox.SelectedValue;
+            if (this.agrupacionComboBox.SelectedValue != null) agrupacion = ((int)this.agrupacionComboBox.SelectedValue).ToString();
+            MessageBox.Show($">{this.agrupacionComboBox.SelectedValue}<", "debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            CuentaMySQL cuentas = new CuentaMySQL(cuenta, particion, "1", "AB");
+            CuentaMySQL cuentas = new CuentaMySQL(cuenta, particion, agrupacion, representante);
 
             this.cuentasDataGridView.DataSource = cuentas.CuentasObtenidas;
         }
+
     }
 }
